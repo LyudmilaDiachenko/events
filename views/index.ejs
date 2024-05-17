@@ -7,5 +7,12 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <div>
+      <% events.map(event => { %>
+        <span><%= event.title %></span>
+        <span><%= event.description %></span>
+        <span><%= event.date %></span>
+      <% }) %>
+    </div>
   </body>
 </html>
