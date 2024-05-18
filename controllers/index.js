@@ -1,40 +1,30 @@
-var express = require('express');
-var router = express.Router();
-var redis = require('redis');
-
-const db = redis.createClient({
-  password: 'sYjjTQwUgBvcqCiWX7UsqlLE6QF5v53f',
-  socket: {
-      host: 'redis-17141.c6.eu-west-1-1.ec2.redns.redis-cloud.com',
-      port: 17141
-  }
-})
-db.connect();
+const express = require('express');
+const router = express.Router();
+const redis = require('../models/redis');
 
 router.get('/', function(req, res, next) {
-  db.keys('events:*')
-  .then(keys => {
-    Promise.all(keys.map(key => db.hGetAll(key)))
-    .then(events => res.render('index', { title: 'Express', events: events }))
-  });
+  redis.search('events:*', events => 
+    res.render('index', { title: 'Express', events })
+  )
 });
 
 router.get('/register/:id', function(req, res, next) {
-  res.render('register', { title: 'Express', id: req.params.id})
+  redis.get(`events:${req.params.id}`, event => 
+    res.render('register', { title: 'Express', id: req.params.id, ...event})
+  )
 });
 
 router.post('/register/:id', function(req, res, next) {
-  db.hSet(`participants:${req.params.id}:${req.body.email}`, req.body)
+  redis.set(`participants:${req.params.id}:${req.body.email}`, req.body)
   res.redirect(`/participants/${req.params.id}`)
 });
 
 router.get('/participants/:id', function(req, res, next) {
-  db.keys(`participants:${req.params.id}:*`)
-  .then(keys => {
-    Promise.all(keys.map(key => db.hGetAll(key)))
-    .then(participants =>  res.render('participants', { title: 'Express', participants: participants }))
-  });
- 
+  redis.get(`events:${req.params.id}`, event => 
+    redis.search(`participants:${req.params.id}:*`, participants => 
+      res.render('participants', { title: 'Express', participants, ...event })
+    )
+  )
 });
 
 module.exports = router;
