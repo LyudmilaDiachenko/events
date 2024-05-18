@@ -4,11 +4,13 @@
     <title>Cinema events</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/javascripts/participants.js"></script>
     <% if (background) { %>
       <style>
         body::before {
           content: "";
-          position: absolute;
+          position: fixed;
           top: 0;
           left: 0;
           width: 100%;
@@ -30,8 +32,10 @@
         <span><%= event.name %></span>
         <span><%= event.email %></span>
         <span><%= event.date %></span>
-        <span style="color: red"><%= event.registered %></span>
       <% }) %>
     </div>
+
+    <canvas id="chart" data-participants="<%= JSON.stringify(participants) %>"></canvas>
+
   </body>
 </html>
