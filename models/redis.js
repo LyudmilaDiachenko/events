@@ -29,7 +29,7 @@ module.exports = {
         this.db.keys(key)
         .then(keys => {
             Promise.all(keys.map(key => this.db.hGetAll(key)))
-            .then(data => cb(data.sort(a => a.background ? -1 : 1)))
+            .then(cb)
         });
     },
     flushAll: function(){

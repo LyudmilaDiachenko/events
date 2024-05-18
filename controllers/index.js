@@ -3,8 +3,16 @@ const router = express.Router();
 const redis = require('../models/redis');
 
 router.get('/', function(req, res, next) {
+  const itemsPerPage = 12;
+  const page = 1 * req.query.page || 1;
+
   redis.search('events:*', events => 
-    res.render('index', { title: 'Express', events })
+    res.render('index', { 
+      title: 'Express', 
+      events: events.slice(itemsPerPage * (page * 1 - 1), itemsPerPage * (page * 1)),
+      maxPage: Math.ceil(events.length / itemsPerPage),
+      page
+    })
   )
 });
 
