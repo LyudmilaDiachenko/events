@@ -8,10 +8,14 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <div>
-      <% events.map(event => { %>
-        <span><%= event.title %></span>
-        <span><%= event.description %></span>
-        <span><%= event.date %></span>
+    <% events.map(event => { %>
+        <div>
+          <span><%= event.title %></span>
+          <span><%= event.description %></span>
+          <span><%= event.date %></span>
+          <a href="/register/<%= event.id %>">Register</a>
+          <a href="/participants/<%= event.id %>">View</a>
+        </div>
       <% }) %>
     </div>
   </body>

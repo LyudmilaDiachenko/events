@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Register</p>
+    <form method="POST" action="/register/<%= id %>">
+      <label>
+        Full name
+        <input name="name" type="text" required />
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" required />
+      </label>
+      <label>
+        Date of birth
+        <input name="date" type="date" required />
+      </label>
+      <span>Where did you hear about this event?</span>
+      <label>
+        <input name="where" type="radio" value="media" required />
+        Social media
+      </label>
+      <label>
+        <input name="where" type="radio" value="friends" required />
+        Friends
+      </label>
+      <label>
+        <input name="where" type="radio" value="myself" required />
+        Found myself
+      </label>
+      <input type="submit" />
+    </form>
+  </body>
+</html>

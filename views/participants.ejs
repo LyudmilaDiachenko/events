@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Participants</p>
+    <div>
+      <% participants.map(event => { %>
+        <span><%= event.name %></span>
+        <span><%= event.email %></span>
+        <span><%= event.date %></span>
+      <% }) %>
+    </div>
+  </body>
+</html>
