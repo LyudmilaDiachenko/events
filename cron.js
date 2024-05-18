@@ -7,19 +7,20 @@ function parseDB(page = 1){
         url: `https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&include_adult=false&include_video=true&language=en-US&year=2025&page=${page}`,
         json: true
     }, (e, r, data) => data.results.map(
-        event => redis.set(
+        event => event.poster_path && event.backdrop_path && redis.set(
             `events:${event.id}`, 
             {
                 id: event.id,
                 title: event.title, 
                 description: event.overview, 
                 date: event.release_date,
-                image: event.poster_path || "",
-                background: event.backdrop_path || ""
+                image: event.poster_path,
+                background: event.backdrop_path
             }
         )
     ))
 }
-for(let page = 1; page <= 10; page++){
+for(let page = 1; page <= 100; page++){
     parseDB(page)
+    console.debug('Page:', page)
 }
