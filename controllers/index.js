@@ -18,19 +18,19 @@ router.get('/', function(req, res, next) {
 
 router.get('/register/:id', function(req, res, next) {
   redis.get(`events:${req.params.id}`, event => 
-    res.render('register', { title: 'Express', id: req.params.id, ...event})
+    res.render('register', { id: req.params.id, ...event})
   )
 });
 
 router.post('/register/:id', function(req, res, next) {
-  redis.set(`participants:${req.params.id}:${req.body.email}`, req.body)
+  redis.set(`participants:${req.params.id}:${req.body.email}`, {registered: new Date().toLocaleDateString(), ...req.body})
   res.redirect(`/participants/${req.params.id}`)
 });
 
 router.get('/participants/:id', function(req, res, next) {
   redis.get(`events:${req.params.id}`, event => 
     redis.search(`participants:${req.params.id}:*`, participants => 
-      res.render('participants', { title: 'Express', participants, ...event })
+      res.render('participants', { participants, ...event })
     )
   )
 });
