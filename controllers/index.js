@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
   const page = 1 * req.query.page || 1;
 
   redis.search('events:*', events => 
-    res.render('index', { 
-      title: 'Express', 
+    res.render('index', {
+      background: events.sort(_=>Math.random()-.5)[0].background,
       events: events
         .sort((a,b) => a[req.query.sort] > b[req.query.sort] ? 1 : -1)
         .slice(itemsPerPage * (page * 1 - 1), itemsPerPage * (page * 1)),

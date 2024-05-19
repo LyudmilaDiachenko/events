@@ -12,13 +12,12 @@
   </head>
   <body>
     <header class="header_container">
-      <div class="header_wrapper">
+      <a href="/" class="header_wrapper">
         <img src="/images/logotype.png" />
         <h1 class="title">Cinema events</h1>
-      </div>
+      </a>
     </header>
-    <h1><%= title %></h1>
-    <p class="part_title">"Awesome Events" participants</p>
+    <h1>"<%= title %>" participants</h1>
     <div class="part_container">
       <% participants.map(event => { %>
         <div class="part_wrapper">

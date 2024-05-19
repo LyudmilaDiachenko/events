@@ -4,6 +4,9 @@
     <title>Cinema events</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% if (background) { %>
+      <style>body::before{background-image: url('https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces<%= background %>')}</style>
+    <% } %>
   </head>
   <body>
     <header class="header_container">
@@ -43,13 +46,13 @@
         <% if(page > 1) { %>
           <a href="/?<%= paginatorBase %><%= page - 1 %>" class="arrow_prev">&#129032</a>
         <% } else { %>
-          <span>&#129032</span>
+          <span class="arrow_prev">&#129032</span>
         <% } %>
         <span class="page"><%= page %></span>
         <% if(page < maxPage) { %>
           <a href="/?<%= paginatorBase %><%= page + 1 %>" class="arrow_next">&#129034</a> 
         <% } else { %>
-          <span>&#129034</span>
+          <span class="arrow_next">&#129034</span>
         <% } %>
       </div>
     </div>
