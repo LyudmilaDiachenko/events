@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
       sortBase: query.put(req.query, 'sort', ''),
       paginatorBase: query.put(req.query, 'page', ''),
       maxPage: Math.ceil(events.length / itemsPerPage),
+      sort: req.query.sort,
       page
     })
   )
