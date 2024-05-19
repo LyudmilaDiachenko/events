@@ -13,9 +13,27 @@ header{
   display: flex;
   align-items: center;
   margin: 3% 0;
+  justify-content: space-between;
+}
+.header_container{
+  display: flex;
+  align-items: center;
+}
+.search{
+  display: flex;
+}
+.search_img{
+  z-index: 1;
+}
+.search_input{
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid black;
 }
 .title{
   margin-left: 3%;
+  white-space: nowrap;
 }
 .container{
   display: flex;
@@ -101,7 +119,7 @@ footer{
 form{
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
 }
 label{
@@ -110,12 +128,20 @@ label{
 input{
   outline: none;
 }
+.question_form{  
+  font-size: 1.2rem;  
+  margin-bottom: 2%;
+}
+.question{
+  margin-bottom: 2%;
+}
 .reg_container{
   margin: 0 auto;
 }
 .reg_input{
   width: 100%;
   padding: 1%;
+  margin: 0.5% 0 2%;
 }
 .input_sub{
   width: 30%;
@@ -126,6 +152,37 @@ input{
   border: none;
   font-weight: 600;
 }
+.input_sub:hover{
+  background-color: #11a66294;
+}
 .input_date{
   padding: 1%;
+  margin: 0.5% 0 2%;
+}
+.part_title{
+  font-size: 1.5rem;
+  margin: 2% 0;
+}
+.part_container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.part_wrapper{    
+  border: 2px solid black;
+  width: 24.25%;
+  padding: 1%;
+  margin-right: 1%;
+  margin-bottom: 0.5%;
+  border-radius: 5px;
+}
+.part_wrapper:nth-child(4n){
+  margin-right: 0;
+}
+.part_name,
+.part_email,
+.part_date{
+  margin-bottom: 2%;
+}
+.part_footer{
+  margin-top: 1%;
 }

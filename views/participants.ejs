@@ -25,17 +25,24 @@
     <% } %>
   </head>
   <body>
+    <header>
+      <img src="images/logotype.png" />
+      <h1 class="title">Cinema events</h1>
+    </header>
     <h1><%= title %></h1>
-    <p>Participants</p>
-    <div>
+    <p class="part_title">"Awesome Events" participants</p>
+    <div class="part_container">
       <% participants.map(event => { %>
-        <span><%= event.name %></span>
-        <span><%= event.email %></span>
-        <span><%= event.date %></span>
+        <div class="part_wrapper">
+          <p class="part_name"><%= event.name %></p>
+          <p class="part_email"><%= event.email %></p>
+          <!-- <p class="part_date"><%= event.date %></p> -->
+        </div>
       <% }) %>
     </div>
 
     <canvas id="chart" data-participants="<%= JSON.stringify(participants) %>"></canvas>
-
+    
+    <footer class="part_footer">The site was created by Lyudmila Dyachenko</footer>
   </body>
 </html>

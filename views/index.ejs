@@ -7,8 +7,14 @@
   </head>
   <body>
     <header>
-      <img src="images/logotype.png" />
-      <h1 class="title">Welcome to Cinema events</h1>
+      <div class="header_container">
+        <img src="images/logotype.png" />
+        <h1 class="title">Welcome to Cinema events</h1>
+      </div>
+      <div class="search">
+        <img src="images/search.png" alt="" width="25" class="search_img" />
+        <input type="text" class="search_input" placeholder="Search"/>
+      </div>
     </header>
     <div class="container">
       <% events.map(event => { %>
