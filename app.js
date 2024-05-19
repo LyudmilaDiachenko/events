@@ -13,7 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./controllers/index'));
+app.use('/', require('./controllers/page'));
+app.use('/api/', require('./controllers/api'));
 
 app.use(function(req, res, next) {
   next(createError(404));
