@@ -6,19 +6,25 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <header>
-      <div class="header_container">
-        <img src="images/logotype.png" />
+    <header class="header_container">
+      <div class="header_wrapper">
+        <img src="/images/logotype.png" />
         <h1 class="title">Welcome to Cinema events</h1>
       </div>
-      <div class="search">
-        sort by:
-        <a href="/?<%= sortBase %>title">title</a>
-        <a href="/?<%= sortBase %>date">date</a>
-        <a href="/?<%= sortBase %>organizer">organizer</a>
+      <div class="sort">
+        <p class="sort_text">Sort by:</p>
+        <a class="<% if (sort == 'title') { %>active<% } %> sort_link margin" href="/?<%= sortBase %>title">
+          <span class="link_text">Title</span>
+        </a>
+        <a class="<% if (sort == 'date') { %>active<% } %> sort_link margin" href="/?<%= sortBase %>date">
+          <span class="link_text">Date</span>
+        </a>
+        <a class="<% if (sort == 'organizer') { %>active<% } %> sort_link" href="/?<%= sortBase %>organizer">
+          <span class="link_text">Organizer</span>
+        </a>
       </div>
     </header>
-    <div class="container">
+    <div class="main_container">
       <% events.map(event => { %>
         <div class="wrapper">
           <div class="wrapper_title">
@@ -35,15 +41,15 @@
       <% }) %>
       <div class="pagination">
         <% if(page > 1) { %>
-          <a href="/?<%= paginatorBase %><%= page - 1 %>">🠈</a>
+          <a href="/?<%= paginatorBase %><%= page - 1 %>" class="arrow_prev">&#129032</a>
         <% } else { %>
-          <span>🠈</span>
+          <span>&#129032</span>
         <% } %>
         <span class="page"><%= page %></span>
         <% if(page < maxPage) { %>
-          <a href="/?<%= paginatorBase %><%= page + 1 %>">🠊</a> 
+          <a href="/?<%= paginatorBase %><%= page + 1 %>" class="arrow_next">&#129034</a> 
         <% } else { %>
-          <span>🠊</span>
+          <span>&#129034</span>
         <% } %>
       </div>
     </div>

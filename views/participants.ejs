@@ -7,27 +7,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="/javascripts/participants.js"></script>
     <% if (background) { %>
-      <style>
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          opacity: 0.3;
-          z-index: -1;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-image: url('https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces<%= background %>');
-        }
-      </style>
+      <style>body::before{background-image: url('https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces<%= background %>')}</style>
     <% } %>
   </head>
   <body>
-    <header>
-      <img src="images/logotype.png" />
-      <h1 class="title">Cinema events</h1>
+    <header class="header_container">
+      <div class="header_wrapper">
+        <img src="/images/logotype.png" />
+        <h1 class="title">Cinema events</h1>
+      </div>
     </header>
     <h1><%= title %></h1>
     <p class="part_title">"Awesome Events" participants</p>
