@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const redis = require('../models/redis');
+const query = require('../models/query');
 
 router.get('/', function(req, res, next) {
   const itemsPerPage = 12;
@@ -9,7 +10,11 @@ router.get('/', function(req, res, next) {
   redis.search('events:*', events => 
     res.render('index', { 
       title: 'Express', 
-      events: events.slice(itemsPerPage * (page * 1 - 1), itemsPerPage * (page * 1)),
+      events: events
+        .sort((a,b) => a[req.query.sort] > b[req.query.sort] ? 1 : -1)
+        .slice(itemsPerPage * (page * 1 - 1), itemsPerPage * (page * 1)),
+      sortBase: query.put(req.query, 'sort', ''),
+      paginatorBase: query.put(req.query, 'page', ''),
       maxPage: Math.ceil(events.length / itemsPerPage),
       page
     })

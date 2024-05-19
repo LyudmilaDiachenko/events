@@ -12,8 +12,10 @@
         <h1 class="title">Welcome to Cinema events</h1>
       </div>
       <div class="search">
-        <img src="images/search.png" alt="" width="25" class="search_img" />
-        <input type="text" class="search_input" placeholder="Search"/>
+        sort by:
+        <a href="/?<%= sortBase %>title">title</a>
+        <a href="/?<%= sortBase %>date">date</a>
+        <a href="/?<%= sortBase %>organizer">organizer</a>
       </div>
     </header>
     <div class="container">
@@ -33,13 +35,13 @@
       <% }) %>
       <div class="pagination">
         <% if(page > 1) { %>
-          <a href="/?page=<%= page - 1 %>">🠈</a>
+          <a href="/?<%= paginatorBase %><%= page - 1 %>">🠈</a>
         <% } else { %>
           <span>🠈</span>
         <% } %>
         <span class="page"><%= page %></span>
         <% if(page < maxPage) { %>
-          <a href="/?page=<%= page + 1 %>">🠊</a> 
+          <a href="/?<%= paginatorBase %><%= page + 1 %>">🠊</a> 
         <% } else { %>
           <span>🠊</span>
         <% } %>
